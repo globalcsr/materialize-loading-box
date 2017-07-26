@@ -6,7 +6,8 @@
         static get defaults(){
             return {
                 type: 'circle',
-                color: 'blue'
+                color: 'blue',
+                progress: 1
             };
         }
 
@@ -45,8 +46,19 @@
             return preloaderWrapper;
         }
 
-        static get typeDeterminate(){
-
+        static typeLinear(options){
+            let progress = document.createElement("div");
+            progress.classList.add('progress');
+            let element = document.createElement("div");
+            if (options.type=='indeterminate') {
+                element.classList.add('indeterminate');
+            }else {
+                element.classList.add('determinate');
+                element.style= 'width: ' + options.progress + '%';
+                element.setAttribute('id', 'loading-progress');
+            }
+            progress.appendChild(element);
+            return progress;
         }
 
         static open(message, options){
@@ -59,13 +71,19 @@
 
             // extend default options
             options = LoadingBox.join(LoadingBox.defaults, options);
+            LoadingBox._currentOptions = options;
 
             let box = document.createElement('div');
             box.setAttribute('id', 'loading-box');
             box.classList.add('card');
             let boxContent = document.createElement('div');
             boxContent.classList.add('card-content');
-            let preloader = LoadingBox.typeCircle(options);
+            let preloader;
+            if (options.type=='determinate' || options.type=='indeterminate'){
+                preloader = LoadingBox.typeLinear(options);
+            }else {
+                preloader = LoadingBox.typeCircle(options);
+            }
             let text = document.createElement('p');
             text.setAttribute('id', 'loading-text');
             text.textContent=message;
@@ -86,6 +104,18 @@
             }
         }
 
+        static updateProgress(progress){
+            if (LoadingBox._currentOptions.type=='determinate'){
+                document.getElementById('loading-progress')
+                    .style='width: ' + progress + '%';
+
+                if (LoadingBox._currentOptions.closeOnFinishProgress
+                        & progress>=100){
+                    LoadingBox.close();
+                }
+            }
+        }
+
         static join(l1, l2){
             for (let key in l2){
                 l1[key] = l2[key];
@@ -95,6 +125,7 @@
     }
 
     LoadingBox._box = null;
+    LoadingBox._currentOptions = LoadingBox.defaults;
     window.Materialize.LoadingBox = LoadingBox;
 
 })();
