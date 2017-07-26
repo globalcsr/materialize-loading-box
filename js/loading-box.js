@@ -7,14 +7,14 @@
             return {
                 position: 'middle',
                 size: 'medium', // material default size: medium
-                type: 'circle',
+                type: 'circular',
                 color: 'blue',
                 colors: ['blue', 'red', 'yellow', 'green'],
                 progress: 1
             };
         }
 
-        static typeCircle(options){
+        static typeCircular(options){
 
             let preloaderWrapper = document.createElement('div');
             preloaderWrapper.classList.add('preloader-wrapper');
@@ -97,7 +97,7 @@
             if (options.type=='determinate' || options.type=='indeterminate'){
                 preloader = LoadingBox.typeLinear(options);
             }else {
-                preloader = LoadingBox.typeCircle(options);
+                preloader = LoadingBox.typeCircular(options);
             }
             let text = document.createElement('p');
             text.setAttribute('id', 'loading-text');
@@ -111,7 +111,7 @@
 
         static close(){
             if (document.getElementById('loading-box')){
-                document.getElementById('loading-box').outerHTML = "";    
+                document.getElementById('loading-box').outerHTML = "";
             }
         }
 
