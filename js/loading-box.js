@@ -110,7 +110,9 @@
         }
 
         static close(){
-            document.getElementById('loading-box').outerHTML = "";
+            if (document.getElementById('loading-box')){
+                document.getElementById('loading-box').outerHTML = "";    
+            }
         }
 
         static updateText(message){
