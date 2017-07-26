@@ -1,9 +1,6 @@
 #loading-box{
     display: inline-block;
     position: fixed;
-    top: 40%;
-    left: 0;
-    right: 0;
     max-width: 250px;
     margin: 0 auto;
     z-index: 100;
@@ -19,4 +16,31 @@
     margin-bottom: -15px;
     font-weight: 300;
     text-align: center;
+}
+
+#loading-box.middle{
+    top: 40%;
+    left: 0;
+    right: 0;
+}
+
+#loading-box.top_left{
+    top: 0;
+    left:0;
+}
+
+
+#loading-box.top_right{
+    top: 0;
+    right: 0;
+}
+
+#loading-box.bottom_left{
+    bottom: 0;
+    left: 0;
+}
+
+#loading-box.bottom_right{
+    bottom: 0;
+    right: 0;
 }

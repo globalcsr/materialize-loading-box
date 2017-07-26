@@ -5,8 +5,11 @@
 
         static get defaults(){
             return {
+                position: 'middle',
+                size: 'medium', // material default size: medium
                 type: 'circle',
                 color: 'blue',
+                colors: ['blue', 'red', 'yellow', 'green'],
                 progress: 1
             };
         }
@@ -15,33 +18,43 @@
 
             let preloaderWrapper = document.createElement('div');
             preloaderWrapper.classList.add('preloader-wrapper');
-            preloaderWrapper.classList.add('big');
+            preloaderWrapper.classList.add(options.size);
             preloaderWrapper.classList.add('active');
-            let spinnerLayer = document.createElement('div');
-            spinnerLayer.classList.add('spinner-layer');
-            spinnerLayer.classList.add('spinner-'+options.color+'-only');
-            let clipperLeft = document.createElement('div');
-            clipperLeft.classList.add('circle-clipper');
-            clipperLeft.classList.add('left');
-            let clipperRight = document.createElement('div');
-            clipperRight.classList.add('circle-clipper');
-            clipperRight.classList.add('right');
-            let gapPatch = document.createElement('div');
-            gapPatch.classList.add('gap-patch');
-            let circle1 = document.createElement('div');
-            circle1.classList.add('circle');
-            let circle2 = document.createElement('div');
-            circle2.classList.add('circle');
-            let circle3 = document.createElement('div');
-            circle3.classList.add('circle');
 
-            clipperLeft.appendChild(circle1);
-            gapPatch.appendChild(circle2);
-            clipperRight.appendChild(circle3);
-            spinnerLayer.appendChild(clipperLeft);
-            spinnerLayer.appendChild(gapPatch);
-            spinnerLayer.appendChild(clipperRight);
-            preloaderWrapper.appendChild(spinnerLayer);
+            //we apply spinner-<color>-only class
+            let only = '';
+            if (options.color != 'flashing'){
+                options.colors = [];
+                options.colors[0] = options.color;
+                only = '-only'
+            }
+            for (let c in options.colors){
+                let spinnerLayer = document.createElement('div');
+                spinnerLayer.classList.add('spinner-layer');
+                spinnerLayer.classList.add('spinner-'+options.colors[c]+only);
+                let clipperLeft = document.createElement('div');
+                clipperLeft.classList.add('circle-clipper');
+                clipperLeft.classList.add('left');
+                let clipperRight = document.createElement('div');
+                clipperRight.classList.add('circle-clipper');
+                clipperRight.classList.add('right');
+                let gapPatch = document.createElement('div');
+                gapPatch.classList.add('gap-patch');
+                let circle1 = document.createElement('div');
+                circle1.classList.add('circle');
+                let circle2 = document.createElement('div');
+                circle2.classList.add('circle');
+                let circle3 = document.createElement('div');
+                circle3.classList.add('circle');
+
+                clipperLeft.appendChild(circle1);
+                gapPatch.appendChild(circle2);
+                clipperRight.appendChild(circle3);
+                spinnerLayer.appendChild(clipperLeft);
+                spinnerLayer.appendChild(gapPatch);
+                spinnerLayer.appendChild(clipperRight);
+                preloaderWrapper.appendChild(spinnerLayer);
+            }
 
             return preloaderWrapper;
         }
@@ -57,6 +70,7 @@
                 element.style= 'width: ' + options.progress + '%';
                 element.setAttribute('id', 'loading-progress');
             }
+            element.classList.add(options.color);
             progress.appendChild(element);
             return progress;
         }
@@ -76,6 +90,7 @@
             let box = document.createElement('div');
             box.setAttribute('id', 'loading-box');
             box.classList.add('card');
+            box.classList.add(options.position);
             let boxContent = document.createElement('div');
             boxContent.classList.add('card-content');
             let preloader;
