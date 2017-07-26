@@ -1,0 +1,22 @@
+#loading-box{
+    display: inline-block;
+    position: fixed;
+    top: 40%;
+    left: 0;
+    right: 0;
+    max-width: 250px;
+    margin: 0 auto;
+    z-index: 100;
+}
+
+#loading-box .preloader-wrapper{
+    display: block;
+    margin: auto;
+}
+
+#loading-text{
+    margin-top: 10px;
+    margin-bottom: -15px;
+    font-weight: 300;
+    text-align: center;
+}
