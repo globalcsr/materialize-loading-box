@@ -1,6 +1,7 @@
 # materialize-loading-box
 A Simple widget for showing loading messages using "Materialize Preloader"
 
+## [view demo](https://potter777.github.io/materialize-loading-box/)
 
 ## How to use it?
 
