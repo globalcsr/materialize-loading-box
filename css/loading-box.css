@@ -1,0 +1,46 @@
+#loading-box{
+    display: inline-block;
+    position: fixed;
+    max-width: 250px;
+    margin: 0 auto;
+    z-index: 100;
+}
+
+#loading-box .preloader-wrapper{
+    display: block;
+    margin: auto;
+}
+
+#loading-text{
+    margin-top: 10px;
+    margin-bottom: -15px;
+    font-weight: 300;
+    text-align: center;
+}
+
+#loading-box.middle{
+    top: 40%;
+    left: 0;
+    right: 0;
+}
+
+#loading-box.top_left{
+    top: 1%;
+    left:1%;
+}
+
+
+#loading-box.top_right{
+    top: 1%;
+    right: 1%;
+}
+
+#loading-box.bottom_left{
+    bottom: 1%;
+    left: 1%;
+}
+
+#loading-box.bottom_right{
+    bottom: 1%;
+    right: 1%;
+}

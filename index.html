@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>loading-box demo</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <link rel="stylesheet" href="css/loading-box.css">
+        <style media="screen">
+            .body{
+                background-color: #fcfcfc;
+            }
+            .demo-section{
+                padding-left: 30%;
+            }
+            .demo{
+                display: none;
+            }
+
+            code {
+                font-size: 0.8em;
+            }
+
+            p.content{
+                padding-right: 20%;
+            }
+
+            .github{
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                padding: 20px;
+            }
+
+        </style>
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js" defer></script>
+        <script src="js/loading-box.js" defer></script>
+        <script src="js/demo.js" defer></script>
+    </head>
+    <body>
+        <ul id="slide-out" class="side-nav fixed">
+            <li><a href="#!" onclick="home()">Home</a></li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-acordion">
+                    <li class="active">
+                        <a class="collapsible-header active">Circular (default)<i class="material-icons">arrow_drop_down</i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#!" onclick="demoCircular()">default</a></li>
+                                <li><a href="#!" onclick="demoCircularFlashing()">flashing</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-acordion">
+                    <li>
+                        <a class="collapsible-header">Determinate<i class="material-icons">arrow_drop_down</i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#!" onclick="demoDeterminate()">default</a></li>
+                                <li><a href="#!" onclick="demoDeterminateUpdate()">update progress</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-acordion">
+                    <li>
+                        <a class="collapsible-header">Indeterminate<i class="material-icons">arrow_drop_down</i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#!" onclick="demoIndeterminate()">default</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <div class="demo-section">
+            <div id="main-header">
+                <span class="github">code in <a href="https://github.com/potter777/materialize-loading-box">github</a></span>
+                <h3>Loading Box Widget... using Materialize</h3>
+                <p class="content">
+                    Whe you work with <a href="http://materializecss.com/">Materialize</a>
+                    you can use the <a href="http://materializecss.com/preloader.html">Preloader</a>;
+                    if you only use it once is not a problem, but what about using it more times?...
+                    you must put the same code in each of your web pages, showing and hiding it.
+                </p>
+                <p class="content">
+                    LoadingBox helps you showing loading message easier.
+                </p>
+                <h4>How to use it?</h4>
+                <p class="content">
+                    just adding the <b>loading-box.css</b> and <b>loading-box.js</b>
+                    after the Materialize links and then you can call the box wherever you want using this:
+                </p>
+                <code>
+                    Materialize.LoadingBox.open("Loading Message");
+                </code>
+                <br><br>
+                <h5>Select a demo clicking in a item on the sideNav</h5>
+            </div>
+
+
+            <div class="demo circular-default">
+                <p>Code:</p>
+                <pre><code class="codeblock">
+    Materialize.LoadingBox.open("Loading Message");
+                </code></pre>
+            </div>
+            <div class="demo circular-flashing">
+                <p>Code:</p>
+                <pre><code class="codeblock">
+    Materialize.LoadingBox.open('Loading message...', {color:'flashing'});
+                </code></pre>
+            </div>
+            <div class="demo determinate-default">
+                <p>Code:</p>
+                <pre class="prettyprint"><code class="codeblock">
+    Materialize.LoadingBox.open(
+        'Loading message...',
+        {
+            type: 'determinate',
+            progress: 50
+        }
+    );
+                </code></pre>
+            </div>
+            <div class="demo determinate-update">
+                <p>Code:</p>
+                <pre><code class="codeblock">
+    Materialize.LoadingBox.open(
+        'Loading...',
+        {
+            type: 'determinate',
+            progress: 1
+            closeOnFinishProgress: true,
+            position: 'top_right'
+            }
+        );
+
+        // demo update progress
+        var x = 1;
+        setInterval(
+            function () {
+                if (x <= 100) {
+                    Materialize.LoadingBox.updateText("loading... "+x+"%");
+                    Materialize.LoadingBox.updateProgress(x++);
+                }
+            },
+            100
+        );
+                </code></pre>
+            </div>
+            <div class="demo indeterminate-default">
+                <p>Code:</p>
+                <pre><code class="codeblock">
+    Materialize.LoadingBox.open(
+        'Loading elements...',
+        {
+            type:'indeterminate',
+            color: 'red'
+        }
+    );
+                </code></pre>
+            </div>
+        </div>
+    </body>
+</html>
