@@ -39,7 +39,7 @@ Materialize.LoadingBox.open(
 ```javascript
 Materalize.LoadingBox.open(message, options) // Open the LoadingBox
 Materialize.LoadingBox.close()  // Close the LoadingBox
-Materialize.LoadingBox.updateText(message) // make the message update, useful when you are doing many process and you want to report what is happening
+Materialize.LoadingBox.updateText(message) // update the message of the LB, useful when you are doing many process and you want to report what is happening
 Materialize.LoadingBox.updateProgress(progress) // set the progress when your're using determinate type, if you are using the closeOnFinishProgress option, the LoadingBox will be closed.
 ```
 
