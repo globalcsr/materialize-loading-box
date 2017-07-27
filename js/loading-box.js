@@ -10,7 +10,8 @@
                 type: 'circular',
                 color: 'blue',
                 colors: ['blue', 'red', 'yellow', 'green'],
-                progress: 1
+                progress: 1,
+                closeOnFinishProgress: false
             };
         }
 
