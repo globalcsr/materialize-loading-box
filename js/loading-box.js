@@ -134,6 +134,15 @@
             }
         }
 
+        static updatePosition(pos){
+            let element = document.getElementById('loading-box');
+            if (element!=null){
+                element.classList.remove(LoadingBox._currentOptions.position);
+                element.classList.add(pos);
+                LoadingBox._currentOptions.position = pos;
+            }
+        }
+
         static join(l1, l2){
             for (let key in l2){
                 l1[key] = l2[key];
